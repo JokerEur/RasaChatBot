@@ -1,0 +1,65 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - thank_you
+  - translate
+
+entities:
+  - target_language
+  - translate_text
+
+slots:
+  to_lang:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: target_language
+  translate_text:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: translate_text
+
+responses:
+  utter_greet:
+  - text: "General Kenobi ? How do you feel ?"
+
+  utter_cheer_up:
+  - text: "Here is something for you:"
+    image: "https://lumiere-a.akamaihd.net/v1/images/General-Grievous_c9df9cb5.jpeg?region=0%2C8%2C1200%2C600"
+
+  utter_did_that_help:
+  - text: "Did that help you, General Kenobi ?"
+
+  utter_happy:
+  - text: "Awesome!"
+  - text: "That is pleasure to hear."
+
+  utter_goodbye:
+  - text: "I hope we don't see each other again !"
+
+  utter_iamabot:
+  - text: "I'm a translation bot powered by Rasa."
+
+  utter_youre_welcome:
+  - text: "At your service !"
+
+  utter_translate:
+  - text: "Ok, what should I translate ?"
+
+
+actions:
+  - action_translate_to_lang
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
